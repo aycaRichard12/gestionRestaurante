@@ -8,14 +8,32 @@
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     
-    <!-- Font Awesome 6 (si no está incluido en tu app.css) -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+        .animate-float-delay {
+            animation: float 8s ease-in-out infinite;
+            animation-delay: -2s;
+        }
+        .hero-pattern {
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+    </style>
 </head>
 
 <body class="text-gray-800 bg-gradient-to-br from-gray-50 via-white to-amber-50/30">
 
     <!-- Navbar mejorada con sticky y blur -->
-    <nav class="sticky top-0 z-50 transition-all duration-300 border-b border-gray-100 shadow-sm bg-white/80 backdrop-blur-lg">
+    <nav class="sticky top-0 z-50 transition-all duration-300 border-b border-gray-100 shadow-sm bg-white/90 backdrop-blur-lg">
         <div class="container px-4 mx-auto sm:px-6 lg:px-8">
             <div class="flex items-center justify-between py-4">
                 <!-- Logo y marca -->
@@ -56,12 +74,19 @@
         </div>
     </nav>
 
-    <!-- Hero Section mejorado -->
-    <section class="relative py-20 overflow-hidden bg-gradient-to-br from-primary via-primary to-secondary lg:py-28">
-        <!-- Patrón decorativo de fondo -->
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 1px); background-size: 40px 40px;"></div>
+    <!-- Hero Section con imagen de fondo profesional -->
+    <section class="relative py-20 overflow-hidden bg-gradient-to-br from-primary/95 via-primary/90 to-secondary/95 lg:py-28">
+        <!-- Imagen de fondo profesional (restaurante) -->
+        <div class="absolute inset-0">
+            <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                 alt="Restaurante profesional" 
+                 class="object-cover w-full h-full opacity-20"
+                 loading="lazy">
+            <div class="absolute inset-0 bg-gradient-to-r from-primary/80 to-secondary/80"></div>
         </div>
+        
+        <!-- Patrón decorativo -->
+        <div class="absolute inset-0 hero-pattern opacity-20"></div>
         
         <!-- Elementos decorativos flotantes -->
         <div class="absolute rounded-full top-20 left-10 w-72 h-72 bg-white/10 blur-3xl animate-pulse"></div>
@@ -119,7 +144,7 @@
         </div>
     </section>
 
-    <!-- Features Section mejorada -->
+    <!-- Features Section con imágenes profesionales -->
     <section id="features" class="py-20 lg:py-28 bg-gradient-to-b from-white to-gray-50">
         <div class="container px-4 mx-auto sm:px-6 lg:px-8">
             <!-- Encabezado de sección -->
@@ -136,112 +161,218 @@
             </div>
 
             <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <!-- Card 1 - Inteligencia -->
+                <!-- Card 1 - Inteligencia con imagen -->
                 <div class="relative overflow-hidden transition-all duration-500 bg-white shadow-lg group rounded-2xl hover:shadow-2xl hover:scale-105">
                     <div class="absolute inset-0 transition-opacity duration-500 opacity-0 bg-gradient-to-br from-primary/5 to-secondary/5 group-hover:opacity-100"></div>
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                             alt="Analytics" 
+                             class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
                     <div class="relative p-8 text-center">
-                        <div class="relative mb-6">
+                        <div class="relative mb-4 -mt-16">
                             <div class="absolute inset-0 transition-opacity rounded-full opacity-50 bg-gradient-to-r from-primary to-secondary blur-xl group-hover:opacity-75"></div>
-                            <div class="relative flex items-center justify-center w-20 h-20 mx-auto transition-transform duration-300 shadow-lg bg-gradient-to-br from-primary to-secondary rounded-2xl group-hover:scale-110">
-                                <i class="text-3xl text-white fas fa-chart-line"></i>
+                            <div class="relative flex items-center justify-center w-16 h-16 mx-auto transition-transform duration-300 shadow-lg bg-gradient-to-br from-primary to-secondary rounded-2xl group-hover:scale-110">
+                                <i class="text-2xl text-white fas fa-chart-line"></i>
                             </div>
                         </div>
                         <h3 class="mb-3 text-xl font-bold text-gray-800 transition-colors group-hover:text-primary">Inteligencia de Negocios</h3>
                         <p class="leading-relaxed text-gray-600">Dashboards por rol con datos en tiempo real para tomar decisiones estratégicas.</p>
-                        <div class="mt-4 transition-opacity opacity-0 group-hover:opacity-100">
-                            <span class="text-sm font-semibold text-primary">Saber más →</span>
-                        </div>
                     </div>
                 </div>
 
-                <!-- Card 2 - Inventario -->
+                <!-- Card 2 - Inventario con imagen -->
                 <div class="relative overflow-hidden transition-all duration-500 bg-white shadow-lg group rounded-2xl hover:shadow-2xl hover:scale-105">
                     <div class="absolute inset-0 transition-opacity duration-500 opacity-0 bg-gradient-to-br from-primary/5 to-secondary/5 group-hover:opacity-100"></div>
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                             alt="Inventario" 
+                             class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
                     <div class="relative p-8 text-center">
-                        <div class="relative mb-6">
+                        <div class="relative mb-4 -mt-16">
                             <div class="absolute inset-0 transition-opacity rounded-full opacity-50 bg-gradient-to-r from-primary to-secondary blur-xl group-hover:opacity-75"></div>
-                            <div class="relative flex items-center justify-center w-20 h-20 mx-auto transition-transform duration-300 shadow-lg bg-gradient-to-br from-primary to-secondary rounded-2xl group-hover:scale-110">
-                                <i class="text-3xl text-white fas fa-boxes"></i>
+                            <div class="relative flex items-center justify-center w-16 h-16 mx-auto transition-transform duration-300 shadow-lg bg-gradient-to-br from-primary to-secondary rounded-2xl group-hover:scale-110">
+                                <i class="text-2xl text-white fas fa-boxes"></i>
                             </div>
                         </div>
                         <h3 class="mb-3 text-xl font-bold text-gray-800 transition-colors group-hover:text-primary">Control de Inventario</h3>
                         <p class="leading-relaxed text-gray-600">Gestión inteligente de stock con alertas automáticas y optimización de recursos.</p>
-                        <div class="mt-4 transition-opacity opacity-0 group-hover:opacity-100">
-                            <span class="text-sm font-semibold text-primary">Saber más →</span>
-                        </div>
                     </div>
                 </div>
 
-                <!-- Card 3 - Pedidos -->
+                <!-- Card 3 - Pedidos con imagen -->
                 <div class="relative overflow-hidden transition-all duration-500 bg-white shadow-lg group rounded-2xl hover:shadow-2xl hover:scale-105">
                     <div class="absolute inset-0 transition-opacity duration-500 opacity-0 bg-gradient-to-br from-primary/5 to-secondary/5 group-hover:opacity-100"></div>
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                             alt="Pedidos" 
+                             class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
                     <div class="relative p-8 text-center">
-                        <div class="relative mb-6">
+                        <div class="relative mb-4 -mt-16">
                             <div class="absolute inset-0 transition-opacity rounded-full opacity-50 bg-gradient-to-r from-primary to-secondary blur-xl group-hover:opacity-75"></div>
-                            <div class="relative flex items-center justify-center w-20 h-20 mx-auto transition-transform duration-300 shadow-lg bg-gradient-to-br from-primary to-secondary rounded-2xl group-hover:scale-110">
-                                <i class="text-3xl text-white fas fa-clipboard-list"></i>
+                            <div class="relative flex items-center justify-center w-16 h-16 mx-auto transition-transform duration-300 shadow-lg bg-gradient-to-br from-primary to-secondary rounded-2xl group-hover:scale-110">
+                                <i class="text-2xl text-white fas fa-clipboard-list"></i>
                             </div>
                         </div>
                         <h3 class="mb-3 text-xl font-bold text-gray-800 transition-colors group-hover:text-primary">Gestión de Pedidos</h3>
                         <p class="leading-relaxed text-gray-600">Comandas rápidas, integración con cocina y seguimiento en tiempo real.</p>
-                        <div class="mt-4 transition-opacity opacity-0 group-hover:opacity-100">
-                            <span class="text-sm font-semibold text-primary">Saber más →</span>
-                        </div>
                     </div>
                 </div>
 
-                <!-- Card 4 - Facturación -->
+                <!-- Card 4 - Facturación con imagen -->
                 <div class="relative overflow-hidden transition-all duration-500 bg-white shadow-lg group rounded-2xl hover:shadow-2xl hover:scale-105">
                     <div class="absolute inset-0 transition-opacity duration-500 opacity-0 bg-gradient-to-br from-primary/5 to-secondary/5 group-hover:opacity-100"></div>
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                             alt="Facturación" 
+                             class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
                     <div class="relative p-8 text-center">
-                        <div class="relative mb-6">
+                        <div class="relative mb-4 -mt-16">
                             <div class="absolute inset-0 transition-opacity rounded-full opacity-50 bg-gradient-to-r from-primary to-secondary blur-xl group-hover:opacity-75"></div>
-                            <div class="relative flex items-center justify-center w-20 h-20 mx-auto transition-transform duration-300 shadow-lg bg-gradient-to-br from-primary to-secondary rounded-2xl group-hover:scale-110">
-                                <i class="text-3xl text-white fas fa-file-invoice-dollar"></i>
+                            <div class="relative flex items-center justify-center w-16 h-16 mx-auto transition-transform duration-300 shadow-lg bg-gradient-to-br from-primary to-secondary rounded-2xl group-hover:scale-110">
+                                <i class="text-2xl text-white fas fa-file-invoice-dollar"></i>
                             </div>
                         </div>
                         <h3 class="mb-3 text-xl font-bold text-gray-800 transition-colors group-hover:text-primary">Facturación Electrónica</h3>
                         <p class="leading-relaxed text-gray-600">Control total de ventas, facturación automática y reportes fiscales.</p>
-                        <div class="mt-4 transition-opacity opacity-0 group-hover:opacity-100">
-                            <span class="text-sm font-semibold text-primary">Saber más →</span>
-                        </div>
                     </div>
                 </div>
 
-                <!-- Card 5 - Usuarios -->
+                <!-- Card 5 - Usuarios con imagen -->
                 <div class="relative overflow-hidden transition-all duration-500 bg-white shadow-lg group rounded-2xl hover:shadow-2xl hover:scale-105">
                     <div class="absolute inset-0 transition-opacity duration-500 opacity-0 bg-gradient-to-br from-primary/5 to-secondary/5 group-hover:opacity-100"></div>
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                             alt="Equipo" 
+                             class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
                     <div class="relative p-8 text-center">
-                        <div class="relative mb-6">
+                        <div class="relative mb-4 -mt-16">
                             <div class="absolute inset-0 transition-opacity rounded-full opacity-50 bg-gradient-to-r from-primary to-secondary blur-xl group-hover:opacity-75"></div>
-                            <div class="relative flex items-center justify-center w-20 h-20 mx-auto transition-transform duration-300 shadow-lg bg-gradient-to-br from-primary to-secondary rounded-2xl group-hover:scale-110">
-                                <i class="text-3xl text-white fas fa-users"></i>
+                            <div class="relative flex items-center justify-center w-16 h-16 mx-auto transition-transform duration-300 shadow-lg bg-gradient-to-br from-primary to-secondary rounded-2xl group-hover:scale-110">
+                                <i class="text-2xl text-white fas fa-users"></i>
                             </div>
                         </div>
                         <h3 class="mb-3 text-xl font-bold text-gray-800 transition-colors group-hover:text-primary">Gestión de Usuarios</h3>
                         <p class="leading-relaxed text-gray-600">Roles y permisos completos para administradores, meseros, cocineros y cajeros.</p>
-                        <div class="mt-4 transition-opacity opacity-0 group-hover:opacity-100">
-                            <span class="text-sm font-semibold text-primary">Saber más →</span>
-                        </div>
                     </div>
                 </div>
 
-                <!-- Card 6 - Reportes -->
+                <!-- Card 6 - Reportes con imagen -->
                 <div class="relative overflow-hidden transition-all duration-500 bg-white shadow-lg group rounded-2xl hover:shadow-2xl hover:scale-105">
                     <div class="absolute inset-0 transition-opacity duration-500 opacity-0 bg-gradient-to-br from-primary/5 to-secondary/5 group-hover:opacity-100"></div>
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                             alt="Reportes" 
+                             class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                    </div>
                     <div class="relative p-8 text-center">
-                        <div class="relative mb-6">
+                        <div class="relative mb-4 -mt-16">
                             <div class="absolute inset-0 transition-opacity rounded-full opacity-50 bg-gradient-to-r from-primary to-secondary blur-xl group-hover:opacity-75"></div>
-                            <div class="relative flex items-center justify-center w-20 h-20 mx-auto transition-transform duration-300 shadow-lg bg-gradient-to-br from-primary to-secondary rounded-2xl group-hover:scale-110">
-                                <i class="text-3xl text-white fas fa-chart-simple"></i>
+                            <div class="relative flex items-center justify-center w-16 h-16 mx-auto transition-transform duration-300 shadow-lg bg-gradient-to-br from-primary to-secondary rounded-2xl group-hover:scale-110">
+                                <i class="text-2xl text-white fas fa-chart-simple"></i>
                             </div>
                         </div>
                         <h3 class="mb-3 text-xl font-bold text-gray-800 transition-colors group-hover:text-primary">Reportes Avanzados</h3>
                         <p class="leading-relaxed text-gray-600">Análisis detallado de ventas, productos, tendencias y rendimiento del negocio.</p>
-                        <div class="mt-4 transition-opacity opacity-0 group-hover:opacity-100">
-                            <span class="text-sm font-semibold text-primary">Saber más →</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de testimoniales con imágenes -->
+    <section class="py-20 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div class="container px-4 mx-auto sm:px-6 lg:px-8">
+            <div class="mb-16 text-center">
+                <span class="inline-block px-4 py-2 mb-4 text-sm font-semibold rounded-full bg-primary/10 text-primary">
+                    Testimonios Reales
+                </span>
+                <h2 class="mb-4 text-3xl font-bold text-gray-800 sm:text-4xl">
+                    Lo que dicen nuestros clientes
+                </h2>
+                <p class="max-w-2xl mx-auto text-lg text-gray-600">
+                    Más de 500 restaurantes confían en SaborGestion para transformar su negocio
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+                <!-- Testimonial 1 -->
+                <div class="p-6 transition-all duration-300 bg-white shadow-xl rounded-2xl hover:shadow-2xl hover:scale-105">
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                             alt="Cliente" 
+                             class="object-cover rounded-full w-14 h-14">
+                        <div>
+                            <h4 class="font-bold text-gray-800">María González</h4>
+                            <p class="text-sm text-gray-500">Chef Ejecutiva, La Cabaña</p>
                         </div>
                     </div>
+                    <div class="flex mb-3 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="leading-relaxed text-gray-600">
+                        "SaborGestion transformó completamente nuestra operación. Ahora tenemos control total sobre inventario y pedidos. ¡Increíble!"
+                    </p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="p-6 transition-all duration-300 bg-white shadow-xl rounded-2xl hover:shadow-2xl hover:scale-105">
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                             alt="Cliente" 
+                             class="object-cover rounded-full w-14 h-14">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Carlos Méndez</h4>
+                            <p class="text-sm text-gray-500">Propietario, Sabores del Mundo</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-3 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="leading-relaxed text-gray-600">
+                        "La mejor inversión que hicimos. Los reportes en tiempo real nos ayudan a tomar decisiones estratégicas cada día."
+                    </p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="p-6 transition-all duration-300 bg-white shadow-xl rounded-2xl hover:shadow-2xl hover:scale-105">
+                    <div class="flex items-center gap-4 mb-4">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" 
+                             alt="Cliente" 
+                             class="object-cover rounded-full w-14 h-14">
+                        <div>
+                            <h4 class="font-bold text-gray-800">Ana Rodríguez</h4>
+                            <p class="text-sm text-gray-500">Gerente, El Gourmet</p>
+                        </div>
+                    </div>
+                    <div class="flex mb-3 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="leading-relaxed text-gray-600">
+                        "El soporte es excelente y la plataforma es súper intuitiva. Nuestros meseros aprendieron a usarla en un día."
+                    </p>
                 </div>
             </div>
         </div>
@@ -249,6 +380,13 @@
 
     <!-- CTA Section mejorada -->
     <section class="relative py-20 overflow-hidden bg-gradient-to-r from-primary via-secondary to-accent lg:py-28">
+        <!-- Imagen de fondo decorativa -->
+        <div class="absolute inset-0 opacity-10">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80" 
+                 alt="Food background" 
+                 class="object-cover w-full h-full">
+        </div>
+        
         <!-- Elementos decorativos -->
         <div class="absolute inset-0">
             <div class="absolute top-0 left-0 rounded-full w-96 h-96 bg-white/10 blur-3xl"></div>
@@ -257,7 +395,7 @@
         
         <div class="container relative px-4 mx-auto text-center sm:px-6 lg:px-8">
             <div class="max-w-3xl mx-auto">
-                <i class="inline-block mb-6 text-5xl fas fa-utensils text-white/80"></i>
+                <i class="inline-block mb-6 text-5xl fas fa-utensils text-white/80 animate-float"></i>
                 <h2 class="mb-6 text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
                     ¿Listo para mejorar tu restaurante?
                 </h2>
@@ -289,10 +427,12 @@
     <footer class="py-12 text-white bg-gray-900">
         <div class="container px-4 mx-auto sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 gap-8 mb-8 md:grid-cols-4">
-                <!-- Columna 1: Info -->
+                <!-- Columna 1: Info con logo -->
                 <div>
                     <div class="flex items-center gap-2 mb-4">
-                        <i class="text-2xl fas fa-utensils text-primary"></i>
+                        <div class="p-2 bg-gradient-to-br from-primary to-secondary rounded-xl">
+                            <i class="text-xl text-white fas fa-utensils"></i>
+                        </div>
                         <h3 class="text-xl font-bold">SaborGestion</h3>
                     </div>
                     <p class="text-sm leading-relaxed text-gray-400">
@@ -322,14 +462,16 @@
                     </ul>
                 </div>
                 
-                <!-- Columna 4: Legal -->
+                <!-- Columna 4: Newsletter -->
                 <div>
-                    <h4 class="mb-4 font-semibold">Legal</h4>
-                    <ul class="space-y-2 text-sm text-gray-400">
-                        <li><a href="#" class="transition-colors hover:text-primary">Términos de Uso</a></li>
-                        <li><a href="#" class="transition-colors hover:text-primary">Política de Privacidad</a></li>
-                        <li><a href="#" class="transition-colors hover:text-primary">Cookies</a></li>
-                    </ul>
+                    <h4 class="mb-4 font-semibold">Suscríbete</h4>
+                    <p class="mb-3 text-sm text-gray-400">Recibe novedades y promociones</p>
+                    <div class="flex gap-2">
+                        <input type="email" placeholder="Tu email" class="flex-1 px-3 py-2 text-sm text-white bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:border-primary">
+                        <button class="px-3 py-2 transition-colors rounded-lg bg-primary hover:bg-primary/80">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
             
