@@ -30,3 +30,6 @@ EXPOSE 8080
 
 # 8. Comando de inicio profesional para Docker en la nube
 CMD php artisan config:clear && php artisan serve --host=0.0.0.0 --port=${PORT:-8080}
+
+# Crea un archivo .env vacío para que Laravel no se queje
+RUN touch .env
