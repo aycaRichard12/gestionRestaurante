@@ -8,8 +8,8 @@ const currentHost = (typeof window !== 'undefined') ? window.location.hostname :
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: import.meta.env.VITE_PUSHER_APP_KEY ?? 'saborkey',       // valor seguro por defecto
-    cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',    // cluster por defecto (inofensivo)
+    key: import.meta.env.VITE_PUSHER_APP_KEY ?? 'a42d53009b7b282bc22d',       // valor seguro por defecto
+    cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'us2',    // cluster por defecto (inofensivo)
     wsHost: currentHost,
     wsPort: 80,
     wssPort: 443,
