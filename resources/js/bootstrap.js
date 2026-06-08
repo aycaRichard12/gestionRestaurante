@@ -25,14 +25,16 @@ const defaultPort = (typeof window !== 'undefined' && window.location.port)
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
-    key: import.meta.env.VITE_REVERB_APP_KEY ?? import.meta.env.VITE_PUSHER_APP_KEY ?? 'saborkey',
-    cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',
-    wsHost: import.meta.env.VITE_REVERB_HOST ?? import.meta.env.VITE_PUSHER_HOST ?? defaultHost,
-    wsPort: Number(import.meta.env.VITE_REVERB_PORT ?? import.meta.env.VITE_PUSHER_PORT ?? defaultPort),
-    wssPort: Number(import.meta.env.VITE_REVERB_PORT ?? import.meta.env.VITE_PUSHER_PORT ?? defaultPort),
-    forceTLS: isHttps,
+    key: import.meta.env.VITE_PUSHER_APP_KEY,
+    cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
+    // wsHost: import.meta.env.VITE_REVERB_HOST ?? import.meta.env.VITE_PUSHER_HOST ?? defaultHost,
+    // wsPort: Number(import.meta.env.VITE_REVERB_PORT ?? import.meta.env.VITE_PUSHER_PORT ?? defaultPort),
+    // wssPort: Number(import.meta.env.VITE_REVERB_PORT ?? import.meta.env.VITE_PUSHER_PORT ?? defaultPort),
+    forceTLS: true,
     enabledTransports: ['ws', 'wss'],
-    disableStats: true,
+    // disableStats: true,
 });
 
-console.log(`🔌 Echo configurado → ${isHttps ? 'wss' : 'ws'}://${window.Echo.options.wsHost}:${window.Echo.options.wsPort} (key: ${window.Echo.options.key})`);
+// console.log(`🔌 Echo configurado → ${isHttps ? 'wss' : 'ws'}://${window.Echo.options.wsHost}:${window.Echo.options.wsPort} (key: ${window.Echo.options.key})`);
+console.log(`🔌 Echo conectando a cluster: ${import.meta.env.VITE_PUSHER_APP_CLUSTER}`);
+
