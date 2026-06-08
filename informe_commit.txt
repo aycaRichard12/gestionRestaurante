@@ -1,30 +1,71 @@
-﻿commit 0d111913c8d39638bc472a1894f4f6de32a53400
+﻿commit d56a7f9c7749743e97d670d9e77da65da59a2a1b
 Author: aycaRichard12 <aycarichard7@gmail.com>
-Date:   Mon Jun 1 06:11:53 2026 -0400
+Date:   Mon Jun 8 02:13:38 2026 -0400
 
-    refactor: remove duplicate route for pending orders and clean up admin middleware
+    refactor: update Echo configuration for improved clarity and enforce TLS
 
-diff --git a/routes/web.php b/routes/web.php
-index bdcbfca..6c1ab1b 100644
---- a/routes/web.php
-+++ b/routes/web.php
-@@ -170,8 +170,6 @@
-     Route::get('/misPedidosPendientes', [PedidoController::class, 'misPedidosPendientes'])
-     ->name('pedidos.pendientes.json');
- 
--    Route::get('/misPedidosPendientes', [PedidoController::class, 'misPedidosPendientes'])
--    ->name('pedidos.pendientes.json');
- 
-     Route::get('/cliente/pedidos/{pedido}/generar-qr', [PedidoController::class, 'generarQrPedido'])
-     ->name('cliente.pedido.generar-qr');
-@@ -215,9 +213,7 @@
- Route::middleware(['role:admin'])->group(function () {
-     Route::get('/admin/analytics', [App\Http\Controllers\AdminAnalyticsController::class, 'index'])
-         ->name('admin.analytics');
--    Route::get('/mesero/refresh-data', [App\Http\Controllers\ServerDashboardController::class, 'refreshData'])
--    ->name('mesero.refresh-data')
--    ->middleware('auth', 'role:mesero');
+diff --git a/informe_commit.txt b/informe_commit.txt
+new file mode 100644
+index 0000000..a2ff88b
+--- /dev/null
++++ b/informe_commit.txt
+@@ -0,0 +1,30 @@
++´╗┐commit 0d111913c8d39638bc472a1894f4f6de32a53400
++Author: aycaRichard12 <aycarichard7@gmail.com>
++Date:   Mon Jun 1 06:11:53 2026 -0400
 +
++    refactor: remove duplicate route for pending orders and clean up admin middleware
++
++diff --git a/routes/web.php b/routes/web.php
++index bdcbfca..6c1ab1b 100644
++--- a/routes/web.php
+++++ b/routes/web.php
++@@ -170,8 +170,6 @@
++     Route::get('/misPedidosPendientes', [PedidoController::class, 'misPedidosPendientes'])
++     ->name('pedidos.pendientes.json');
++ 
++-    Route::get('/misPedidosPendientes', [PedidoController::class, 'misPedidosPendientes'])
++-    ->name('pedidos.pendientes.json');
++ 
++     Route::get('/cliente/pedidos/{pedido}/generar-qr', [PedidoController::class, 'generarQrPedido'])
++     ->name('cliente.pedido.generar-qr');
++@@ -215,9 +213,7 @@
++ Route::middleware(['role:admin'])->group(function () {
++     Route::get('/admin/analytics', [App\Http\Controllers\AdminAnalyticsController::class, 'index'])
++         ->name('admin.analytics');
++-    Route::get('/mesero/refresh-data', [App\Http\Controllers\ServerDashboardController::class, 'refreshData'])
++-    ->name('mesero.refresh-data')
++-    ->middleware('auth', 'role:mesero');
+++
++ });
++ 
++ 
+diff --git a/resources/js/bootstrap.js b/resources/js/bootstrap.js
+index 03601c2..6c48ac9 100644
+--- a/resources/js/bootstrap.js
++++ b/resources/js/bootstrap.js
+@@ -25,14 +25,16 @@ const defaultPort = (typeof window !== 'undefined' && window.location.port)
+ 
+ window.Echo = new Echo({
+     broadcaster: 'pusher',
+-    key: import.meta.env.VITE_REVERB_APP_KEY ?? import.meta.env.VITE_PUSHER_APP_KEY ?? 'saborkey',
+-    cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER ?? 'mt1',
+-    wsHost: import.meta.env.VITE_REVERB_HOST ?? import.meta.env.VITE_PUSHER_HOST ?? defaultHost,
+-    wsPort: Number(import.meta.env.VITE_REVERB_PORT ?? import.meta.env.VITE_PUSHER_PORT ?? defaultPort),
+-    wssPort: Number(import.meta.env.VITE_REVERB_PORT ?? import.meta.env.VITE_PUSHER_PORT ?? defaultPort),
+-    forceTLS: isHttps,
++    key: import.meta.env.VITE_PUSHER_APP_KEY,
++    cluster: import.meta.env.VITE_PUSHER_APP_CLUSTER,
++    // wsHost: import.meta.env.VITE_REVERB_HOST ?? import.meta.env.VITE_PUSHER_HOST ?? defaultHost,
++    // wsPort: Number(import.meta.env.VITE_REVERB_PORT ?? import.meta.env.VITE_PUSHER_PORT ?? defaultPort),
++    // wssPort: Number(import.meta.env.VITE_REVERB_PORT ?? import.meta.env.VITE_PUSHER_PORT ?? defaultPort),
++    forceTLS: true,
+     enabledTransports: ['ws', 'wss'],
+-    disableStats: true,
++    // disableStats: true,
  });
  
- 
+-console.log(`­ƒöî Echo configurado ÔåÆ ${isHttps ? 'wss' : 'ws'}://${window.Echo.options.wsHost}:${window.Echo.options.wsPort} (key: ${window.Echo.options.key})`);
++// console.log(`­ƒöî Echo configurado ÔåÆ ${isHttps ? 'wss' : 'ws'}://${window.Echo.options.wsHost}:${window.Echo.options.wsPort} (key: ${window.Echo.options.key})`);
++console.log(`­ƒöî Echo conectando a cluster: ${import.meta.env.VITE_PUSHER_APP_CLUSTER}`);
++
